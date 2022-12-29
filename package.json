@@ -6,5 +6,8 @@
   "license": "MIT",
   "repository": "git@github.com:hudoznik/read_exel.git",
   "author": "Шелудченков Александр",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "exceljs": "^4.3.0"
+  }
 }
