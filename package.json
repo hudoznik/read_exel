@@ -4,7 +4,7 @@
   "description": "Чтение exel файла и преобразование в sql-запрос",
   "main": "index.js",
   "license": "MIT",
-  "repository": "git@github.com:hudoznik/read_exel.git",
+  "repository": "https://github.com/hudoznik/read_exel.git",
   "author": "Шелудченков Александр",
   "private": true,
   "dependencies": {
