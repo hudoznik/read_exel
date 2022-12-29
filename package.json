@@ -1,0 +1,10 @@
+{
+  "name": "read_exel",
+  "version": "1.0.0",
+  "description": "Чтение exel файла и преобразование в sql-запрос",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "git@github.com:hudoznik/read_exel.git",
+  "author": "Шелудченков Александр",
+  "private": true
+}
