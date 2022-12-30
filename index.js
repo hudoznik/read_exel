@@ -14,7 +14,8 @@ let main = async () => {
         })
         let rows = [];
         debugger;
-        _rows.forEach((row,i) => {
+        await fs.writeFileSync('insert.sql',`-- Файл импорта`);
+        _rows.forEach( async (row,i) => {
                 if (i == 0) return
                 if (row._cells.length == 0) return;
                 // console.log(row)
@@ -24,22 +25,28 @@ let main = async () => {
                         if (c == 'qqqqqqqqqqqqq') return
                         let rc = row._cells.find(rc => {
                                 if (rc == undefined) return false
-                                console.log(c)
-                                return rc._address.replace(/[0-9]/,'') == c
+                                // console.log(c)
+                                return rc._address.replace(/[0-9]{1,10}/,'') == c
                         })
-                        console.log(c, rc)
+                        // console.log(c, rc)
+                        console.log(`${c}${i}`)
                         // obj[colums[c]] = (rc) ? rc.value : '';
                         obj.push((rc) ? rc.value : '');
                 })
                 rows.push('("'+obj.join('","')+'")')
+				await fs.appendFileSync('insert.sql', `${newLineChar}INSERT INTO ${table} (${ Object.keys(colums).reduce((map,el) => {
+				        map.push(colums[el])
+				        return map
+				},[]).join(',')}) VALUES ${newLineChar}("${obj.join('","')}");`)
+				// await fs.appendFileSync('insert.sql', `${newLineChar}("${obj.join('","')}");`);
             // console.log(i)
         })
         debugger;
-        await fs.writeFileSync('insert.sql', `INSERT INTO ${table} (${ Object.keys(colums).reduce((map,el) => {
-                map.push(colums[el])
-                return map
-        },[]).join(',')}) VALUES`)
-        await fs.appendFileSync('insert.sql', `${newLineChar}${rows.join(',')};`);
+        // await fs.writeFileSync('insert.sql', `INSERT INTO ${table} (${ Object.keys(colums).reduce((map,el) => {
+        //         map.push(colums[el])
+        //         return map
+        // },[]).join(',')}) VALUES`)
+        // await fs.appendFileSync('insert.sql', `${newLineChar}${rows.join(',')};`);
 
         
         process.exit();
